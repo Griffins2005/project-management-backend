@@ -5,11 +5,19 @@ const cors = require('cors');
 const app = express();
 const taskRoutes = require('./routes/task');
 const priorityRoutes = require('./routes/priority')
+const teamRoutes = require('./routes/team')
+
+app.use(cors({
+  origin: "http://localhost:3000", 
+  methods: ["GET", "POST", "DELETE", "PUT"], 
+  credentials: true, 
+}));
+
 
 app.use(express.json());
-app.use(cors());
 
 app.use('/api/tasks', taskRoutes);
+app.use('/api/team', teamRoutes);
 app.use('/api/priorities', priorityRoutes);
 
 mongoose
