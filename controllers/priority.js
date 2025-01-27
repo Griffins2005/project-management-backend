@@ -11,32 +11,12 @@ exports.getAllPriorities = async (req, res) => {
 
 exports.addPriority = async (req, res) => {
   try {
-    const { name, start, end, color } = req.body;
-    if (!name || !start || !end || !color) {
+    const { name, color } = req.body;
+    if (!name || !color) {
       return res.status(400).json({ message: "All fields are required." });
     }
-    const startNum = Number(start);
-    const endNum = Number(end);
 
-    if (isNaN(startNum) || isNaN(endNum)) {
-      return res.status(400).json({ message: "Start and end must be numbers." });
-    }
-    if (startNum > endNum) {
-      return res.status(400).json({ message: "Start value must be less than or equal to end value." });
-    }
-
-    const overlappingPriority = await Priority.findOne({
-      $or: [
-        { start: { $lte: startNum }, end: { $gte: startNum } },
-        { start: { $lte: endNum }, end: { $gte: endNum } },
-        { start: { $gte: startNum }, end: { $lte: endNum } },
-      ],
-    });
-    if (overlappingPriority) {
-      return res.status(400).json({ message: "The range overlaps with an existing priority." });
-    }
-
-    const newPriority = new Priority({ name, start: startNum, end: endNum, color });
+    const newPriority = new Priority({ name, color });
     await newPriority.save();
 
     res.status(201).json(newPriority);
@@ -49,28 +29,11 @@ exports.addPriority = async (req, res) => {
 exports.updatePriority = async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, start, end, color } = req.body;
-
-    if (start > end) {
-      return res.status(400).json({ message: "Start value must be less than or equal to end value." });
-    }
-
-    const overlappingPriority = await Priority.findOne({
-      _id: { $ne: id },
-      $or: [
-        { start: { $lte: start }, end: { $gte: start } },
-        { start: { $lte: end }, end: { $gte: end } },
-        { start: { $gte: start }, end: { $lte: end } },
-      ],
-    });
-
-    if (overlappingPriority) {
-      return res.status(400).json({ message: "The range overlaps with an existing priority." });
-    }
+    const { name, color } = req.body;
 
     const updatedPriority = await Priority.findByIdAndUpdate(
       id,
-      { name, start, end, color },
+      { name, color },
       { new: true }
     );
 
