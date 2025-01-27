@@ -6,6 +6,7 @@ const app = express();
 const taskRoutes = require('./routes/task');
 const priorityRoutes = require('./routes/priority')
 const teamRoutes = require('./routes/team')
+const statusRoutes = require('./routes/progress')
 
 app.use(cors({
   origin: "http://localhost:3000", 
@@ -18,6 +19,7 @@ app.use(express.json());
 
 app.use('/api/tasks', taskRoutes);
 app.use('/api/team', teamRoutes);
+app.use("/api/statuses", statusRoutes);
 app.use('/api/priorities', priorityRoutes);
 
 mongoose
