@@ -10,6 +10,15 @@ const getTasks = async (req, res) => {
   }
 };
 
+const getAllTasks = async (req, res) => {
+  try {
+    const tasks = await Task.find(); 
+    res.status(200).json(tasks);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
 const createTask = async (req, res) => {
   const { projectId } = req.params;
   try {
@@ -42,4 +51,4 @@ const deleteTask = async (req, res) => {
   }
 };
 
-module.exports = { getTasks, createTask, updateTask, deleteTask };
+module.exports = { getTasks, createTask, updateTask, deleteTask, getAllTasks };
