@@ -1,4 +1,5 @@
 const express = require("express");
+const app = express();  // Declare app once
 const mongoose = require("mongoose");
 const session = require("express-session");
 const cors = require("cors");
@@ -6,7 +7,14 @@ const dotenv = require("dotenv");
 dotenv.config();
 const passport = require("./passport.js");
 
-const app = express();
+const path = require('path');
+
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
 const taskRoutes = require('./routes/task');
 const authRoutes = require('./routes/auth');
 const priorityRoutes = require('./routes/priority');

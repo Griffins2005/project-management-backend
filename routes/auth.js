@@ -9,9 +9,9 @@ router.get(
 
 router.get(
   "/google/callback",
-  passport.authenticate("google", { failureRedirect: "http://localhost:3000" }),
+  passport.authenticate("google", { failureRedirect: "https://project-management-tool-one.vercel.app/" }),
   (req, res) => {
-    res.redirect("http://localhost:3000/project");
+    res.redirect("https://project-management-tool-one.vercel.app/project");
   }
 );
 
