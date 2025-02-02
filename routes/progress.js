@@ -1,6 +1,5 @@
 const express = require("express");
-const {getStatuses,addStatus, 
-    updateStatus,deleteStatus} = require("../controllers/progress");
+const {getStatuses,addStatus,updateStatus,deleteStatus} = require("../controllers/progress");
 
 const router = express.Router();
 

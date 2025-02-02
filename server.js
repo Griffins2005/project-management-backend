@@ -1,22 +1,36 @@
-require('dotenv').config();
-const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
+const express = require("express");
+const mongoose = require("mongoose");
+const session = require("express-session");
+const cors = require("cors");
+const dotenv = require("dotenv");
+dotenv.config();
+const passport = require("./passport.js");
+
 const app = express();
 const taskRoutes = require('./routes/task');
-const priorityRoutes = require('./routes/priority')
-const teamRoutes = require('./routes/team')
-const statusRoutes = require('./routes/progress')
-const projectRoutes = require('./routes/project')
+const authRoutes = require('./routes/auth');
+const priorityRoutes = require('./routes/priority');
+const teamRoutes = require('./routes/team');
+const statusRoutes = require('./routes/progress');
+const projectRoutes = require('./routes/project');
 
 app.use(cors({
   origin: "http://localhost:3000",
   methods: ["GET", "POST", "DELETE", "PUT"],
   credentials: true,
 }));
-
 app.use(express.json());
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
 
+app.use("/api/auth", authRoutes);
 app.use('/api/tasks', taskRoutes);
 app.use('/api/team', teamRoutes);
 app.use("/api/statuses", statusRoutes);
@@ -35,3 +49,6 @@ mongoose
   .catch((err) => {
     console.error('MongoDB connection failed:', err.message);
   });
+
+console.log("Google Client ID:", process.env.GOOGLE_CLIENT_ID);
+console.log("Google Client Secret:", process.env.GOOGLE_CLIENT_SECRET);

@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const { addPriority } = require('../controllers/priority');
 
 const taskSchema = new mongoose.Schema({
   title: { type: String, required: true },
