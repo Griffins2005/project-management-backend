@@ -23,7 +23,7 @@ const statusRoutes = require('./routes/progress');
 const projectRoutes = require('./routes/project');
 
 app.use(cors({
-  origin: "http://localhost:3000",
+  origin: "https://project-management-tool-one.vercel.app",
   methods: ["GET", "POST", "DELETE", "PUT"],
   credentials: true,
 }));
