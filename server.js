@@ -24,7 +24,7 @@ const projectRoutes = require('./routes/project');
 
 app.use(
   cors({
-    origin: "https://project-management-tool-one.vercel.app", 
+    origin: "https://project-management-tool-8kmq.onrender.com", 
     methods: "GET, POST, PUT, DELETE",
     credentials: true,
   })
