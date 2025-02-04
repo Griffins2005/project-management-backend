@@ -22,11 +22,16 @@ const teamRoutes = require('./routes/team');
 const statusRoutes = require('./routes/progress');
 const projectRoutes = require('./routes/project');
 
-app.use(cors({
-  origin: "https://project-management-tool-one.vercel.app",
-  methods: ["GET", "POST", "DELETE", "PUT"],
-  credentials: true,
-}));
+const cors = require("cors");
+
+app.use(
+  cors({
+    origin: "https://project-management-tool-one.vercel.app", 
+    methods: "GET, POST, PUT, DELETE",
+    credentials: true,
+  })
+);
+
 app.use(express.json());
 app.use(
   session({
