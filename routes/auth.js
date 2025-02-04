@@ -9,7 +9,7 @@ router.get(
 
 router.get(
   "/google/callback",
-  passport.authenticate("google", { failureRedirect: "https://project-management-tool-app.onrender.com" }),
+  passport.authenticate("google", { failureRedirect: "https://project-management-tool-app.onrender.com/" }),
   (req, res) => {
     res.redirect("https://project-management-tool-app.onrender.com/project");
   }
