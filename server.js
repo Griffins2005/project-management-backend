@@ -22,8 +22,6 @@ const teamRoutes = require('./routes/team');
 const statusRoutes = require('./routes/progress');
 const projectRoutes = require('./routes/project');
 
-const cors = require("cors");
-
 app.use(
   cors({
     origin: "https://project-management-tool-one.vercel.app", 
