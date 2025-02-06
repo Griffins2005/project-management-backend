@@ -6,7 +6,6 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 dotenv.config();
 const passport = require("./passport.js");
-
 const path = require("path");
 
 app.use(express.static(path.join(__dirname, "public")));
@@ -24,7 +23,7 @@ const projectRoutes = require("./routes/project");
 
 app.use(
   cors({
-    origin: "https://project-management-tool-app.onrender.com",
+    origin: ["https://project-management-tool-app.onrender.com"],
     methods: ["GET", "POST", "DELETE", "PUT"],
     credentials: true,
   })
