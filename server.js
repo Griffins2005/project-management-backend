@@ -8,8 +8,6 @@ const path = require("path");
 dotenv.config();
 const passport = require("./passport.js");
 
-app.use(express.static(path.join(__dirname, "public")));
-
 app.use(
   cors({
     origin: "https://project-management-tool-app.onrender.com",
@@ -41,17 +39,6 @@ app.use("/api/team", teamRoutes);
 app.use("/api/statuses", statusRoutes);
 app.use("/api/priorities", priorityRoutes);
 app.use("/api/projects", projectRoutes);
-
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
-});
-
-app.get("*", (req, res) => {
-  if (req.path.startsWith("/api")) {
-    return res.status(404).json({ error: "API route not found" });
-  }
-  res.sendFile(path.join(__dirname, "public", "index.html"));
-});
 
 mongoose
   .connect(process.env.MONGO_URI, {})
