@@ -10,7 +10,7 @@ const passport = require("./passport.js");
 
 app.use(
   cors({
-    origin: "https://project-management-tool-app.onrender.com",
+    origin: "https://project-management-tool-app.vercel.app",
     methods: ["GET", "POST", "DELETE", "PUT"],
     credentials: true,
   })
