@@ -40,6 +40,10 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.get("/api/hello", (req, res) => {
+  res.json({ message: "Hello from server.js!" });
+});
+
 const taskRoutes = require("./routes/task");
 const authRoutes = require("./routes/auth");
 const priorityRoutes = require("./routes/priority");
