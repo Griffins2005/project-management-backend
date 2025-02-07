@@ -8,13 +8,13 @@ const path = require("path");
 dotenv.config();
 const passport = require("./passport.js");
 
-app.use(
-  cors({
-    origin: "https://project-management-tool-app.vercel.app",
-    methods: ["GET", "POST", "DELETE", "PUT"],
-    credentials: true,
-  })
-);
+app.use(cors({
+  origin: "https://project-management-tool-app.vercel.app",
+  methods: ["GET", "POST", "DELETE", "PUT"],
+  allowedHeaders: ["Origin", "X-Requested-With", "Content-Type", "Accept", "Authorization"],
+  credentials: true,
+}));
+
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "https://project-management-tool-app.vercel.app");
   res.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT, OPTIONS");
@@ -22,12 +22,11 @@ app.use((req, res, next) => {
   res.header("Access-Control-Allow-Credentials", "true");
 
   if (req.method === "OPTIONS") {
-    return res.sendStatus(204);
+    return res.sendStatus(204); 
   }
-  
+
   next();
 });
-
 
 app.use(express.json());
 app.use(
