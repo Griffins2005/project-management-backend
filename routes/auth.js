@@ -9,7 +9,7 @@ router.get("/google", passport.authenticate("google", {
 }));
 
 router.get("/google/callback", passport.authenticate("google", {
-  failureRedirect: "/login",
+  failureRedirect: "https://project-management-tool-app.vercel.app/login",
   successRedirect: "https://project-management-tool-app.vercel.app/project", 
 }));
 
