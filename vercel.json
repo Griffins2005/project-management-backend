@@ -6,17 +6,17 @@
       "use": "@vercel/node"
     }
   ],
-  "routes": [
+  "rewrites": [
     {
-      "src": "/api/(.*)",
-      "dest": "/server.js"
+      "source": "/api/(.*)",
+      "destination": "/server.js"
     }
   ],
   "headers": [
     {
       "source": "/api/:path*",
       "headers": [
-        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Access-Control-Allow-Origin", "value": "https://project-management-tool-app.vercel.app" },
         { "key": "Access-Control-Allow-Methods", "value": "GET, POST, DELETE, PUT, OPTIONS" },
         { "key": "Access-Control-Allow-Headers", "value": "Origin, X-Requested-With, Content-Type, Accept, Authorization" },
         { "key": "Access-Control-Allow-Credentials", "value": "true" }
