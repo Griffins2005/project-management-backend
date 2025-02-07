@@ -10,7 +10,7 @@ router.get("/google", passport.authenticate("google", {
 
 router.get("/google/callback", passport.authenticate("google", {
   failureRedirect: "/login",
-  successRedirect: "https://project-management-tool-app.onrender.com/project", 
+  successRedirect: "https://project-management-tool-app.vercel.app/project", 
 }));
 
 router.get("/current_user", (req, res) => {
