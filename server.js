@@ -15,6 +15,14 @@ app.use(
     credentials: true,
   })
 );
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "https://project-management-tool-app.vercel.app");
+  res.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Access-Control-Allow-Credentials", "true");
+  next();
+});
+
 app.use(express.json());
 app.use(
   session({
